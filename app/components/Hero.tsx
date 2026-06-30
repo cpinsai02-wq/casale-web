@@ -5,11 +5,11 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Menus", href: "#menus" },
-  { label: "Our Story", href: "#story" },
-  { label: "Spaces", href: "#spaces" },
-  { label: "Events", href: "#events" },
-  { label: "Contacts", href: "#footer" },
+  { label: "Menu", href: "#menus" },
+  { label: "La nostra storia", href: "#story" },
+  { label: "Spazi", href: "#spaces" },
+  { label: "Eventi", href: "#events" },
+  { label: "Contatti", href: "#footer" },
 ];
 
 export function Hero() {
@@ -67,7 +67,7 @@ export function Hero() {
           onClick={() => scrollTo("#footer")}
           className="hidden md:inline-flex items-center font-sans text-[0.75rem] tracking-widest uppercase text-[#F7F7F4] border border-[#D5D5B7]/40 hover:border-[#D5D5B7]/70 hover:bg-[#D5D5B7]/10 px-5 py-2 rounded-[2px] transition-all duration-250"
         >
-          Reserve a Table
+          Prenota un tavolo
         </button>
 
         {/* Mobile toggle */}
@@ -98,22 +98,22 @@ export function Hero() {
       {/* Hero content */}
       <div className="relative z-10 flex flex-col flex-1 justify-end px-8 pb-20 md:px-16 md:pb-28 max-w-5xl">
         <p className="font-sans text-[0.75rem] tracking-[0.22em] uppercase text-[#8B6B4A] mb-6">
-          Fine Dining · Exclusive Events · Sicily
+          Fine Dining · Eventi esclusivi · Sicilia
         </p>
 
         <h1 className="text-[#F7F7F4] text-4xl md:text-6xl font-serif mb-6 max-w-[780px] leading-tight">
-          Where every season<br />
-          <em className="text-[#D5D5B7] not-italic font-serif italic">tells a story</em>
+          Dove ogni stagione<br />
+          <em className="text-[#D5D5B7] not-italic font-serif italic">racconta una storia</em>
         </h1>
 
         <p className="font-sans text-[1.0625rem] style-normal leading-relaxed text-[#D5D5B7]/75 max-w-[480px] mb-10">
-          A historic estate transformed into a sanctuary of Sicilian hospitality. Seasonal menus, intimate rooms, and unforgettable celebrations.
+          Una dimora storica trasformata in un rifugio dell'ospitalità siciliana. Menu stagionali, ambienti intimi e celebrazioni indimenticabili.
         </p>
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-4">
-          <CTAPrimary onClick={() => scrollTo("#menus")}>View Menus</CTAPrimary>
-          <CTASecondary onClick={() => scrollTo("#spaces")}>Explore the Venue</CTASecondary>
+          <CTAPrimary onClick={() => scrollTo("#menus")}>Vedi i menu</CTAPrimary>
+          <CTASecondary onClick={() => scrollTo("#spaces")}>Esplora il luogo</CTASecondary>
         </div>
       </div>
 

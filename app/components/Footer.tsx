@@ -87,7 +87,7 @@ export function Footer() {
                 <MapPin size={14} className="text-[#D5D5B7] mt-1 shrink-0" />
                 <span className="font-sans text-sm leading-relaxed text-[#D5D5B7]">
                   Via Nicolosi 67<br />
-                  95032 Belpasso (CT)<br />
+                  95032, Belpasso (CT)<br />
                   Sicilia, Italia
                 </span>
               </li>
