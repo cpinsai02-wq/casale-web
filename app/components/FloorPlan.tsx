@@ -104,7 +104,6 @@ function FloorStructure() {
         <line x1={-10} y1={0} x2={10} y2={0} stroke="rgba(63,93,99,0.3)" strokeWidth={1} />
         <text x={0} y={-14} textAnchor="middle" className="font-sans text-[8px] fill-[#3F5D63]/40">N</text>
       </g>
-
     </g>
   );
 }

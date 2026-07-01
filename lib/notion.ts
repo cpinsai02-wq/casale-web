@@ -16,7 +16,7 @@ export interface MenuCategoria {
   Nome: string;
   Prezzo: number;
   Piatti: PiattoDettaglio[];
-  Foto: string; // <-- La foto qui è corretta!
+  Foto: string; 
 }
 
 // 1. Mappa dei piatti singoli usando dataSources.query
