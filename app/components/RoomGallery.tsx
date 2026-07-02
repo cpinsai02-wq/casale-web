@@ -34,7 +34,7 @@ export const ROOMS: RoomData[] = [
     atmosphere: "L'antico palmento è la storica cantina nel cuore della tenuta...",
     events: "Cene private, percorsi di degustazione con abbinamento vini ed eventi musicali intimi...",
     images: [
-      { src: "https://images.unsplash.com/photo-1745818016691-14c4020a73ed?w=720&h=480&fit=crop&auto=format", alt: "Palmento — storica cantina con pareti in pietra" },
+      { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFQ3PbJIEXYfM0D1nI41IT6dGmxIVEKGT_Fh6Eofo-SKYgy4_a25Gce52vexiSHEPLHhANo1uE5b-d0Fnj75ohHTUzcDV2Fe3Dg_Bg-YTiJBdnSndUJJ-c2GscQMSL2pgHEfFBb=s1360-w1360-h1020-rw", alt: "Palmento — storica cantina con pareti in pietra" },
       { src: "https://images.unsplash.com/photo-1766832255363-c9f060ade8b0?w=720&h=480&fit=crop&auto=format", alt: "Palmento — tavoli elegantemente apparecchiati" },
       { src: "https://images.unsplash.com/photo-1694021408920-922ff450c525?w=720&h=480&fit=crop&auto=format", alt: "Palmento — servizio del vino" },
     ],
@@ -92,7 +92,7 @@ export const ROOMS: RoomData[] = [
     images: [
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEN_aiZKUoBBKFBscXrLBSVBcXNio95XLNbz7D3HbK04UNcKJOdalSxS-XxSZU4J05BRjKjUDpJVYtHBGdAt-U9zYZx4Wh-bjVil6BMs5g1gjZhr7kl-52Pc1uEgGBEVa1Xz7i4iw=s1360-w1360-h1020-rw", alt: "Terrazza — veduta panoramica ed esterni" },
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEdhrJtqZs3b2Z0oJdmpRuEe9pTUbRonX45-GFRvUL3HtyKV0r8XOKNx1zy4putCci91uBFk2QfRW6q2LL31zjGAM0JgnzUIX16QFDnmtEeIQVTJrshLla_S3rjeFax5dXkn1Y=s1360-w1360-h1020-rw", alt: "Terrazza — porta ad arco" },
-      { src: "https://images.unsplash.com/photo-1694021408920-922ff450c525?w=720&h=480&fit=crop&auto=format", alt: "Terrazza — servizio del vino" },
+      { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFZ_W_zTqiRF0p8WmYQsFHVS6WFLqnp0sLHc8t4YNhP8EV14-zigBKQQU3pnAGznPqxpat-WnNinCUDYCI_ReIF_zRzhSH0f8ix1_WmIbHDeyZDfhewT1Igjd8B7N4EjoiIIsq5Ng=s1360-w1360-h1020-rw", alt: "Terrazza — servizio del vino" },
     ],
     svgRect: { x: 255, y: 296, w: 448, h: 175 },
   },

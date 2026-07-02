@@ -135,7 +135,12 @@ export function FloorPlan() {
               Seleziona una stanza sulla piantina per scoprire la sua atmosfera, capacità e possibilità di evento.
             </p>
           </div>
+          
           <div className="w-12 h-[1px] bg-[#8B6B4A] mt-10" />
+          <p className="font-sans text-[0.9375rem] leading-relaxed text-[#5A6668] ">
+              Cerchiamo sempre di riservare ogni sala ad un singolo evento, tenendo conto del numero di commensali e delle dimensioni di ogni sala in proporzione. 
+L’esclusività della sala è un servizio che includiamo nella banchettistica come anche la preparazione del tavolo della torta ed eventuali decorazioni sul tavolo dei commensali, previe disposizioni discusse tra il cliente ed il responsabile di sala. 
+(se necessario si dividono e si inseriscono in due spazi separati)</p>
         </div>
 
         {/* Box Planimetria SVG */}
