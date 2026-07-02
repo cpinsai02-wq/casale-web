@@ -7,7 +7,16 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
-       { protocol: 'https', hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com' },
+      {
+        protocol: 'https',
+        hostname: 'prod-files-secure-euc1.s3.eu-central-1.amazonaws.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com',
+        pathname: '/**',
+      },
     ],
   },
 };

@@ -19,6 +19,15 @@ export interface MenuCategoria {
   Foto: string; 
 }
 
+const ORDINE_PORTATE: Record<string, number> = {
+  "Antipasto": 1,
+  "Primo": 2,
+  "Secondo": 3,
+  "Contorno": 4,
+  "Dolce": 5,
+  "Bevande": 6
+};
+
 // 1. Mappa dei piatti singoli usando dataSources.query
 async function getPiattiMap(): Promise<Record<string, PiattoDettaglio>> {
   const response = (await notion.dataSources.query({
@@ -49,6 +58,7 @@ async function getPiattiMap(): Promise<Record<string, PiattoDettaglio>> {
 }
 
 // 2. Menu completo relazionato usando dataSources.query
+
 export async function getMenuCompleto(): Promise<MenuCategoria[]> {
   if (!MENU_DATABASE_ID || !PIATTI_DATABASE_ID) {
     throw new Error("Mancano gli ID dei database nel file .env");
@@ -69,12 +79,11 @@ export async function getMenuCompleto(): Promise<MenuCategoria[]> {
   const results = response.results || [];
 
   return results.map((page: any) => {
-    // Estrazione delle proprietà dal database dei MENU
     const idProp = page.properties.Id;
     const nomeProp = page.properties.Nome;
     const prezzoProp = page.properties.Prezzo;
     const relazioniPiattiProp = page.properties.Piatti;
-    const fotoProp = page.properties.Foto; // <-- Estratta qui dal Menu!
+    const fotoProp = page.properties.Foto;
 
     let piattiInMenu: PiattoDettaglio[] = [];
     
@@ -82,17 +91,22 @@ export async function getMenuCompleto(): Promise<MenuCategoria[]> {
       piattiInMenu = relazioniPiattiProp.relation
         .map((rel: any) => piattiMap[rel.id])
         .filter(Boolean);
+
+      // --- ORDINAMENTO DEI PIATTI QUI ---
+      piattiInMenu.sort((a, b) => {
+        // Recupera la priorità, se la categoria non è mappata assegna un valore alto (es. 99) per metterla in fondo
+        const prioritaA = ORDINE_PORTATE[a.Categoria] || 99;
+        const prioritaB = ORDINE_PORTATE[b.Categoria] || 99;
+        return prioritaA - prioritaB;
+      });
     }
 
-    // --- Gestione sicura del campo Files/Media di Notion ---
     let Foto = '';
     if (fotoProp?.type === 'files' && fotoProp.files && fotoProp.files.length > 0) {
       const fileObj = fotoProp.files[0];
-      // Controlla se il file è caricato internamente o è un link esterno
       Foto = fileObj.type === 'file' ? fileObj.file?.url : fileObj.external?.url || '';
     }
 
-    // Costruzione dell'oggetto finale che rispetta MenuCategoria
     return {
       Id: idProp?.type === 'unique_id' ? idProp.unique_id?.number || 0 : 0,
       Nome: nomeProp?.type === 'title' ? nomeProp.title[0]?.plain_text || 'Senza nome' : 'Senza nome',

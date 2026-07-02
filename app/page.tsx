@@ -3,14 +3,10 @@ import { SeasonalMenus } from "./components/SeasonalMenus";
 import { RestaurantStory } from "./components/RestaurantStory";
 import { FloorPlan } from "./components/FloorPlan";
 import { Footer } from "./components/Footer";
-
-// 1. IMPORTA LA FUNZIONE DI NOTION (controlla che il percorso sia giusto)
 import { getMenuCompleto } from "@/lib/notion"; 
 
-// 2. AGGIUNGI 'async' ALLA FUNZIONE
 export default async function App() {
   
-  // 3. SCARICA I DATI DA NOTION QUI
   const dataMenus = await getMenuCompleto();
 
   return (
