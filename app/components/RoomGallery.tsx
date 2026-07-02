@@ -370,7 +370,7 @@ export function RoomGallery({ room }: { room: RoomData }) {
           onMouseEnter={(e) => (e.currentTarget.style.background = "#2A4A52")}
           onMouseLeave={(e) => (e.currentTarget.style.background = "#355A63")}
         >
-          Enquire About This Space
+          Prenota questa sala
         </button>
       </div>
 

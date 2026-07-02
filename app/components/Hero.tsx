@@ -8,7 +8,6 @@ const NAV_LINKS = [
   { label: "Menu", href: "#menus" },
   { label: "La nostra storia", href: "#story" },
   { label: "Spazi", href: "#spaces" },
-  { label: "Eventi", href: "#events" },
   { label: "Contatti", href: "#footer" },
 ];
 
