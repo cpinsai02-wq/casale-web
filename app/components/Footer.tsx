@@ -32,13 +32,13 @@ export function Footer() {
           
           <div className="flex flex-wrap gap-4">
             <a
-              href="tel:+39000000000"
+              href="tel:+393401090100"
               className="font-sans text-[0.8125rem] tracking-widest uppercase font-medium text-[#F7F7F4] bg-[#355A63] hover:bg-[#2A4A52] px-8 py-3.5 rounded-[2px] transition-colors duration-250 no-underline inline-flex items-center"
             >
               Chiama per prenotare
             </a>
             <a
-              href="mailto:info@casaledelnotaio.it"
+              href="https://wa.me/393401090100"
               className="font-sans text-[0.8125rem] tracking-widest uppercase font-medium text-[#D5D5B7] bg-transparent border border-[#D5D5B7]/35 hover:border-[#D5D5B7]/60 hover:bg-[#D5D5B7]/8 px-8 py-3.5 rounded-[2px] transition-all duration-250 no-underline inline-flex items-center"
             >
               Manda una richiesta

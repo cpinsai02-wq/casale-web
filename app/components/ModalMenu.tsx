@@ -33,7 +33,7 @@ export function MenuModal({ isOpen, onClose, cat }: { isOpen: boolean; onClose: 
         <div className="sticky top-0 bg-[#F7F7F4] z-10 flex justify-between items-center px-8 py-6 border-b border-[#3F5D63]/10">
           <div>
             <h2 className="font-serif text-3xl text-[#1C2B2D]">{cat.Nome}</h2>
-            <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#8B6B4A]">Seasonal Selection</p>
+            <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#8B6B4A]">Selezione Stagionale</p>
           </div>
           <button onClick={onClose} className="text-[#1C2B2D] hover:rotate-90 transition-transform duration-300">
             <X size={28} />
@@ -66,8 +66,9 @@ export function MenuModal({ isOpen, onClose, cat }: { isOpen: boolean; onClose: 
 
         {/* Footer Modale */}
         <div className="p-8 bg-[#EDEEDD] text-center">
-          <p className="font-serif italic text-[#1C2B2D]">Price: {cat.Prezzo}€ per person</p>
-          <p className="font-sans text-[0.65rem] uppercase tracking-widest text-[#8B6B4A] mt-2">Excluding beverages</p>
+          <p className="font-serif italic text-[#1C2B2D]">Prezzo: {cat.Prezzo}€ per persona</p>
+          <p className="font-sans text-[0.65rem] uppercase tracking-widest text-[#8B6B4A] mt-2">Escluse bevande extra</p>
+
         </div>
       </div>
     </div>
