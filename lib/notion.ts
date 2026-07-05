@@ -57,7 +57,32 @@ async function getPiattiMap(): Promise<Record<string, PiattoDettaglio>> {
   return piattiMap;
 }
 
-// 2. Menu completo relazionato usando dataSources.query
+// 2. Tutti i piatti disponibili organizzati per categoria
+export async function getTuttiPiatti(): Promise<Record<string, PiattoDettaglio[]>> {
+  const piattiMap = await getPiattiMap();
+  const piatti = Object.values(piattiMap);
+
+  const categorizzati: Record<string, PiattoDettaglio[]> = {
+    "Antipasto": [],
+    "Primo": [],
+    "Secondo": [],
+    "Contorno": [],
+    "Dolce": [],
+    "Bevande": [],
+  };
+
+  piatti.forEach((piatto) => {
+    const cat = piatto.Categoria || "Varie";
+    if (!categorizzati[cat]) {
+      categorizzati[cat] = [];
+    }
+    categorizzati[cat].push(piatto);
+  });
+
+  return categorizzati;
+}
+
+// 3. Menu completo relazionato usando dataSources.query
 
 export async function getMenuCompleto(): Promise<MenuCategoria[]> {
   if (!MENU_DATABASE_ID || !PIATTI_DATABASE_ID) {

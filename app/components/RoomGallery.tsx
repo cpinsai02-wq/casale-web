@@ -90,7 +90,7 @@ export const ROOMS: RoomData[] = [
     atmosphere: "Immensa. Caratterizzata dal cielo stellato sovrastante con vista panoramica sui paesi etnei ed il mare. La sua spaziosità dà ampie possibilità, aggiungendo il pacchetto musica e beverage puoi dare vita al tuo personale, Evento indimenticabile.",
     events: "Grandi buffet, aperitivi di benvenuto e configurazioni di eventi open-air...",
     images: [
-      { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEN_aiZKUoBBKFBscXrLBSVBcXNio95XLNbz7D3HbK04UNcKJOdalSxS-XxSZU4J05BRjKjUDpJVYtHBGdAt-U9zYZx4Wh-bjVil6BMs5g1gjZhr7kl-52Pc1uEgGBEVa1Xz7i4iw=s1360-w1360-h1020-rw", alt: "Terrazza — veduta panoramica ed esterni" },
+      { src: "./images/terrazza1.webp", alt: "Terrazza — veduta panoramica ed esterni" },
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEdhrJtqZs3b2Z0oJdmpRuEe9pTUbRonX45-GFRvUL3HtyKV0r8XOKNx1zy4putCci91uBFk2QfRW6q2LL31zjGAM0JgnzUIX16QFDnmtEeIQVTJrshLla_S3rjeFax5dXkn1Y=s1360-w1360-h1020-rw", alt: "Terrazza — porta ad arco" },
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEq_7vEIKrc4ieZMKIcivFDaZLImyXgHW56c7n-4z45PBCAZPVC2L2WuYp4J7aozR7NjTOvNOVN-Lqkc4OH-GbCw-7veLvKOx_2_Dkzl1UhJZ-ce9EoB-0rZp-QGW92plitKt38=s1360-w1360-h1020-rw", alt: "Terrazza — servizio del vino" },
     ],

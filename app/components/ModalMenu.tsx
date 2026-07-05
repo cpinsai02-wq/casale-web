@@ -4,7 +4,6 @@ import { X } from "lucide-react";
 import { useEffect } from "react";
 
 export function MenuModal({ isOpen, onClose, cat }: { isOpen: boolean; onClose: () => void; cat: any }) {
-  // Blocca lo scroll del sito quando la modale è aperta
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "unset";
@@ -13,7 +12,6 @@ export function MenuModal({ isOpen, onClose, cat }: { isOpen: boolean; onClose: 
 
   if (!isOpen || !cat) return null;
 
-  // Raggruppamento piatti (la tua logica Notion)
   const piattiRaggruppati = cat.Piatti.reduce((acc: any, piatto: any) => {
     const nomeCategoria = piatto.Categoria || 'Altro'; 
     if (!acc[nomeCategoria]) acc[nomeCategoria] = [];

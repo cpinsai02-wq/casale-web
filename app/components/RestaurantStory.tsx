@@ -51,8 +51,7 @@ export function RestaurantStory() {
               La nostra storia
             </p>
             <h2 style={{ color: "#1C2B2D", marginBottom: "1.75rem" }}>
-              Una casa, un tavolo,{" "}
-              <em style={{ color: "#3F5D63", fontStyle: "italic" }}>una tradizione</em>
+              Una casa, un tavolo, una tradizione{" "}
             </h2>
             <p
               style={{
@@ -76,7 +75,7 @@ export function RestaurantStory() {
                 paddingLeft: "1.5rem",
               }}
             >
-              "Il casale del notaio è sempre stata aperto. Abbiamo voluto così."
+              "Il casale del notaio, del gusto il Teatro."
             </p>
           </div>
 
@@ -93,7 +92,7 @@ export function RestaurantStory() {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1766832255363-c9f060ade8b0?w=800&h=1060&fit=crop&auto=format"
+                src="./images/story.webp"
                 alt="Elegant dining tables set in a cozy restaurant interior"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />

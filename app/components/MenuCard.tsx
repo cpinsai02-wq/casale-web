@@ -50,7 +50,7 @@ export function MenuCard({ menu, onOpenModal }: { menu: MenuCategoria; onOpenMod
           style={{ objectFit: "cover" }}
         />
         
-        {/* Badge Prezzo (invece della stagione) */}
+        {/* Badge Prezzo (invece della stagione) 
         <div
           style={{
             position: "absolute",
@@ -73,7 +73,8 @@ export function MenuCard({ menu, onOpenModal }: { menu: MenuCategoria; onOpenMod
           >
             {menu.Prezzo ? `€ ${menu.Prezzo}` : "Prezzo su richiesta"}
           </span>
-        </div>
+        </div>*/}
+        
       </div>
 
       {/* Content */}

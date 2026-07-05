@@ -5,9 +5,7 @@ import { MenuCard } from "./MenuCard";
 import { MenuModal } from "./ModalMenu";
 import { MenuCategoria } from "@/lib/notion";
 
-// La funzione NON è più async. Riceve i dati 'menus' dalla pagina padre (page.tsx)
 export function SeasonalMenus({ menus }: { menus: MenuCategoria[] }) {
-  // Questo stato "ricorda" quale menu abbiamo cliccato. Se è null, la modale è chiusa.
   const [selectedMenu, setSelectedMenu] = useState<MenuCategoria | null>(null);
 
   return (
@@ -87,14 +85,13 @@ export function SeasonalMenus({ menus }: { menus: MenuCategoria[] }) {
             <MenuCard 
               key={menu.Id} 
               menu={menu} 
-              // Quando clicchi il bottone, salviamo il menu nello stato per aprire la modale
               onOpenModal={() => setSelectedMenu(menu)} 
             />
           ))}
         </div>
       </div>
 
-      {/* Renderizziamo la modale SOLO se c'è un menu selezionato */}
+      {/* Modal renderization */}
       {selectedMenu && (
         <MenuModal 
         isOpen={selectedMenu !== null} 

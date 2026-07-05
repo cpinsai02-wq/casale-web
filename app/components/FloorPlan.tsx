@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+// 1. Importa useRef da React
+import { useState, useRef } from "react";
 import { ROOMS, type RoomData, RoomGallery } from "./RoomGallery";
 
 const VIEW_BOX = "0 0 800 600";
@@ -8,15 +9,10 @@ const VIEW_BOX = "0 0 800 600";
 function FloorStructure() {
   return (
     <g>
-
-      
       {/* Corridoio / ingresso */}
       <line x1={227} y1={178} x2={365} y2={178} stroke="#1C2B2D" strokeWidth={1.5} />
-
       <line x1={365} y1={178} x2={365} y2={119} stroke="#1C2B2D" strokeWidth={1.5} />
-
       <line x1={365} y1={119} x2={422} y2={119} stroke="#1C2B2D" strokeWidth={1.5} />
-
 
       {/* Rosa dei venti geometrica minimale integrata in alto a destra */}
       <g transform="translate(740, 40)">
@@ -105,17 +101,30 @@ function RoomShape({
   );
 }
 
-// Qui ho rimosso il box esterno e aggiunto i tratteggi del tuo schizzo
-
-
 export function FloorPlan() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  
+  // 2. Crea il reference per l'ancora dello scroll
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   const selectedRoom = ROOMS.find((r) => r.id === selectedId) ?? null;
 
   const handleSelect = (room: RoomData) => {
-    setSelectedId((prev) => (prev === room.id ? null : room.id));
+    const isDeselecting = selectedId === room.id;
+    setSelectedId(isDeselecting ? null : room.id);
+
+    // 3. Esegui lo scroll solo se l'utente sta selezionando (e non deselezionando) la stanza
+    if (!isDeselecting) {
+      // Usiamo setTimeout per dare tempo a React di renderizzare il div nel DOM 
+      // prima di calcolare la posizione dello scroll
+      setTimeout(() => {
+        galleryRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
   };
 
   return (
@@ -137,10 +146,10 @@ export function FloorPlan() {
           </div>
           
           <div className="w-12 h-[1px] bg-[#8B6B4A] mt-10" />
-          <p className="font-sans text-[0.9375rem] leading-relaxed text-[#5A6668] ">
-              Cerchiamo sempre di riservare ogni sala ad un singolo evento, tenendo conto del numero di commensali e delle dimensioni di ogni sala in proporzione. 
-L’esclusività della sala è un servizio che includiamo nella banchettistica come anche la preparazione del tavolo della torta ed eventuali decorazioni sul tavolo dei commensali, previe disposizioni discusse tra il cliente ed il responsabile di sala. 
-(se necessario si dividono e si inseriscono in due spazi separati)</p>
+          <p className="font-sans text-[0.9375rem] leading-relaxed text-[#5A6668] mt-4">
+            Cerchiamo sempre di riservare ogni sala ad un singolo evento, tenendo conto del numero di commensali e delle dimensioni di ogni sala in proporzione. 
+            L’esclusività della sala è un servizio che includiamo nella banchettistica come anche la preparazione del tavolo della torta ed eventuali decorazioni sul tavolo dei commensali, previe disposizioni discusse tra il cliente ed il responsabile di sala.
+          </p>
         </div>
 
         {/* Box Planimetria SVG */}
@@ -181,9 +190,12 @@ L’esclusività della sala è un servizio che includiamo nella banchettistica c
           </span>
         </div>
 
-        {/* Pannello Dettagli */}
+        {/* Pannello Dettagli con l'ancora ref */}
         {selectedRoom && (
-          <div className="mt-14 border-t border-[#3F5D63]/15 pt-14 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div 
+            ref={galleryRef} 
+            className="mt-14 border-t border-[#3F5D63]/15 pt-14 scroll-mt-10 animate-in fade-in slide-in-from-bottom-4 duration-500"
+          >
             <RoomGallery room={selectedRoom} />
           </div>
         )}
