@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: '*.googleusercontent.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co', // Questo è il dominio dei link diretti di ImgBB
+        pathname: '/**',
+      },
     ],
   },
 };
