@@ -15,6 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Casale del Notaio | Eventi",
   description: "Esclusivo casale storico con antico palmento, terrazza e sale raffinate. Cornice perfetta per eventi, cerimonie ed esperienze culinarie su misura.",
+
+  icons: {
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+
 };
 
 export default function RootLayout({
