@@ -10,10 +10,19 @@ interface CreateYourOwnMenuProps {
 const WHATSAPP_NUMBER = "393401090100";
 
 export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
-  const [selectedPiatti, setSelectedPiatti] = useState<PiattoDettaglio[]>([]);
+  // Trova l'antipasto fisso (assumendo che ce ne sia solo uno)
+  const antipastoFisso = piatti["Antipasto"]?.[0];
+
+  // Inizializza lo stato con l'antipasto già presente, se esiste
+  const [selectedPiatti, setSelectedPiatti] = useState<PiattoDettaglio[]>(
+    antipastoFisso ? [antipastoFisso] : []
+  );
   const [menuName, setMenuName] = useState("");
 
   const togglePiatto = (piatto: PiattoDettaglio) => {
+    // Impedisci la deselezione dell'antipasto
+    if (piatto.Categoria === "Antipasto") return;
+
     setSelectedPiatti((prev) => {
       const isSelected = prev.some((p) => p.Id === piatto.Id);
       if (isSelected) {
@@ -50,8 +59,13 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
     }, {} as Record<string, PiattoDettaglio[]>);
   };
 
+  // Validazione del menu
+  const hasPrimo = selectedPiatti.some(p => p.Categoria === "Primo");
+  const hasSecondo = selectedPiatti.some(p => p.Categoria === "Secondo");
+  const isMenuValid = hasPrimo && hasSecondo;
+
   const generateWhatsAppMessage = () => {
-    if (selectedPiatti.length === 0) return "";
+    if (!isMenuValid) return "";
 
     const lines: string[] = [
       "Gentile Team,",
@@ -91,7 +105,7 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
   };
 
   const handleWhatsAppClick = () => {
-    if (selectedPiatti.length > 0) {
+    if (isMenuValid) {
       const message = generateWhatsAppMessage();
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
     }
@@ -127,19 +141,25 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
               <div key={category} className="mb-12">
                 <h3 className="font-serif text-xl font-medium text-[#1C2B2D] mb-5 pb-2 border-b-2 border-[#8B6B4A]">
                   {category}
+                  {category === "Antipasto" && (
+                    <span className="text-xs font-sans text-[#8B6B4A] ml-3 italic">
+                      (Incluso di default)
+                    </span>
+                  )}
                 </h3>
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
                   {piatti[category].map((piatto) => {
                     const isSelected = selectedPiatti.some((p) => p.Id === piatto.Id);
+                    const isAntipasto = piatto.Categoria === "Antipasto";
+
                     return (
                       <button
                         key={piatto.Id}
                         onClick={() => togglePiatto(piatto)}
-                        className={`p-3.5 px-4 rounded-none cursor-pointer transition-all duration-300 text-left flex items-start gap-2.5 ${
-                          isSelected
-                            ? "bg-[#355A63] border-2 border-[#355A63]"
-                            : "bg-[#F7F7F4] border border-[#3F5D63]/15 hover:border-[#355A63] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(53,90,99,0.15)]"
-                        }`}
+                        className={`p-3.5 px-4 rounded-none transition-all duration-300 text-left flex items-start gap-2.5 
+                          ${isSelected ? "bg-[#355A63] border-2 border-[#355A63]" : "bg-[#F7F7F4] border border-[#3F5D63]/15"}
+                          ${isAntipasto ? "cursor-default opacity-95" : "cursor-pointer hover:border-[#355A63] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(53,90,99,0.15)]"}
+                        `}
                       >
                         <div
                           className={`w-4 h-4 rounded-none shrink-0 mt-0.5 flex items-center justify-center border-[1.5px] transition-colors ${
@@ -237,11 +257,17 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
 
             {/* Buttons */}
             <div className="flex flex-col gap-3">
+              {!isMenuValid && (
+                <p className="font-sans text-[0.75rem] text-[#8B6B4A] text-center m-0 mb-1">
+                  * Seleziona almeno un Primo e un Secondo
+                </p>
+              )}
+              
               <button
                 onClick={handleWhatsAppClick}
-                disabled={selectedPiatti.length === 0}
+                disabled={!isMenuValid}
                 className={`font-sans text-[0.8125rem] tracking-[0.12em] uppercase font-semibold border-none p-4 rounded-none transition-all duration-300 w-full flex items-center justify-center gap-2 ${
-                  selectedPiatti.length === 0
+                  !isMenuValid
                     ? "text-[#B0B0B0] bg-[#D5D5B7] cursor-not-allowed opacity-70"
                     : "text-white bg-[#355A63] cursor-pointer hover:bg-[#243E44] hover:-translate-y-[1px] hover:shadow-[0_8px_16px_rgba(53,90,99,0.15)]"
                 }`}
@@ -251,7 +277,7 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
               
               <button
                 onClick={() => {
-                  setSelectedPiatti([]);
+                  setSelectedPiatti(antipastoFisso ? [antipastoFisso] : []);
                   setMenuName("");
                 }}
                 className="font-sans text-[0.8125rem] tracking-[0.12em] uppercase font-semibold text-[#5A6668] bg-transparent border-[1.5px] border-[#D5D5B7] p-3.5 rounded-none cursor-pointer transition-all duration-300 w-full hover:border-[#8B6B4A] hover:bg-[#8B6B4A]/5"

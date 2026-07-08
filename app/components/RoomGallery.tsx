@@ -17,7 +17,7 @@ export const ROOMS: RoomData[] = [
     name: "Sala 3",
     type: "small",
     capacity: "Fino a 35 ospiti",
-    atmosphere: "La prima sala a partire da sinistra, sulle note del verde chiaro...",
+    atmosphere: "La prima sala a partire da sinistra, sulle note del verde chiaro, prevede un accesso diretto alla zona Pozzo",
     events: "Pranzi di lavoro, piccoli ritrovi familiari, degustazioni private e cene di anniversario.",
     images: [
       { src: "https://images.unsplash.com/photo-1745818016691-14c4020a73ed?w=720&h=480&fit=crop&auto=format", alt: "Sala 3 — spazio eventi versatile" },
@@ -31,8 +31,8 @@ export const ROOMS: RoomData[] = [
     name: "Palmento",
     type: "large",
     capacity: "Fino a 120 ospiti",
-    atmosphere: "L'antico palmento è la storica cantina nel cuore della tenuta...",
-    events: "Cene private, percorsi di degustazione con abbinamento vini ed eventi musicali intimi...",
+    atmosphere: "L'antico palmento è la storica cantina nel cuore della tenuta, caratterizzata da pareti in pietra e soffitti a volta. L'ambiente è suggestivo e accogliente, ideale per eventi esclusivi.",
+    events: "Cene private, percorsi di degustazione con abbinamento vini ed eventi musicali intimi.",
     images: [
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFQ3PbJIEXYfM0D1nI41IT6dGmxIVEKGT_Fh6Eofo-SKYgy4_a25Gce52vexiSHEPLHhANo1uE5b-d0Fnj75ohHTUzcDV2Fe3Dg_Bg-YTiJBdnSndUJJ-c2GscQMSL2pgHEfFBb=s1360-w1360-h1020-rw", alt: "Palmento — storica cantina con pareti in pietra" },
       { src: "https://images.unsplash.com/photo-1766832255363-c9f060ade8b0?w=720&h=480&fit=crop&auto=format", alt: "Palmento — tavoli elegantemente apparecchiati" },
@@ -45,8 +45,8 @@ export const ROOMS: RoomData[] = [
     name: "Sala Grande",
     type: "large",
     capacity: "Fino a 80 ospiti",
-    atmosphere: "Il salone principale della tenuta, caratterizzato da soffitti in pietra a volta...",
-    events: "Ideale per ricevimenti di nozze, gala aziendali e grandi celebrazioni...",
+    atmosphere: "Il salone principale della tenuta",
+    events: "Ideale per ricevimenti di nozze, gala aziendali e grandi celebrazioni.",
     images: [
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHUxguBGMlxH8hIUAl5NNuu34X3iHVou6oA_CwgXOoi6VlT2Ps1zR3FjLuev8EVwN8mEDP1LVh-cfwkKQKUSpq4qENSLP84iRNIza5HGStIWgykVDj_Jt8XZ0f2d9TupxMN84CLvA=s1360-w1360-h1020-rw", alt: "Sala 1 — mise en place intima" },
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHnGJS_6DRDtbyykZiJHjgtg4yoKBlfIpHSIsLpB3RsMOE48hQzdeNf9XfnDEaYRjsQYWb-_2tdNRHh0p-JYXskA6gW-NxJ6fsNVYJ8ZWW_euGL3PFMktPcpRzc-UWCjgV7hF8LSg=s1360-w1360-h1020-rw", alt: "Sala 1 — servizio dello chef" },
@@ -59,8 +59,8 @@ export const ROOMS: RoomData[] = [
     name: "Sala 2",
     type: "small",
     capacity: "Fino a 20 ospiti",
-    atmosphere: "Sulle note di un verde chiaro, dà la possibilità anche ad una piccola tavolata...",
-    events: "Piccole tavolate familiari, cene intime e degustazioni private...",
+    atmosphere: "Sulle note di un verde chiaro, dà la possibilità anche ad una piccola tavolata familiare di riunirsi per una cena intima in pieno stile Casale.",
+    events: "Piccole tavolate familiari, cene intime e degustazioni private.",
     images: [
       { src: "https://images.unsplash.com/photo-1778591103012-eb50e49f8ec2?w=720&h=480&fit=crop&auto=format", alt: "Sala 2 — stanza elegante con luce naturale" },
       { src: "https://images.unsplash.com/photo-1766832255363-c9f060ade8b0?w=720&h=480&fit=crop&auto=format", alt: "Sala 2 — allestimento tavoli" },
@@ -73,7 +73,7 @@ export const ROOMS: RoomData[] = [
     name: "Sala 1",
     type: "small",
     capacity: "Fino a 40 ospiti",
-    atmosphere: "Immersa nelle note di blu e azzurro, ricorda il paesaggio marittimo...",
+    atmosphere: "Immersa nelle note di blu e azzurro, ricorda il paesaggio marittimo, con accesso diretto al terrazzino d'ingresso.",
     events: "Pranzi di lavoro, piccoli ritrovi familiari, degustazioni private e cene di anniversario.",
     images: [
       { src: "https://images.unsplash.com/photo-1773100699991-b7e6bf89a6a1?w=720&h=480&fit=crop&auto=format", alt: "Sala Grande — sala da pranzo con finestre ad arco" },
@@ -88,7 +88,7 @@ export const ROOMS: RoomData[] = [
     type: "large",
     capacity: "Fino a 300 ospiti",
     atmosphere: "Immensa. Caratterizzata dal cielo stellato sovrastante con vista panoramica sui paesi etnei ed il mare. La sua spaziosità dà ampie possibilità, aggiungendo il pacchetto musica e beverage puoi dare vita al tuo personale, Evento indimenticabile.",
-    events: "Grandi buffet, aperitivi di benvenuto e configurazioni di eventi open-air...",
+    events: "Grandi buffet, aperitivi di benvenuto e configurazioni di eventi open-air.",
     images: [
       { src: "./images/terrazza1.webp", alt: "Terrazza — veduta panoramica ed esterni" },
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEdhrJtqZs3b2Z0oJdmpRuEe9pTUbRonX45-GFRvUL3HtyKV0r8XOKNx1zy4putCci91uBFk2QfRW6q2LL31zjGAM0JgnzUIX16QFDnmtEeIQVTJrshLla_S3rjeFax5dXkn1Y=s1360-w1360-h1020-rw", alt: "Terrazza — porta ad arco" },
@@ -101,7 +101,7 @@ export const ROOMS: RoomData[] = [
     name: "Pozzo",
     type: "small",
     capacity: "Fino a 60 ospiti",
-    atmosphere: "Il Punto più alto del Casale con vista sulla Terrazza, crea un clima intimo e familiare, tra le mura del Casale da una parte e la campagna dall’altra.Il Pozzo inoltre può essere adibito a Punto Torta, in pieno stile Casale. ",
+    atmosphere: "Il Punto più alto del Casale con vista sulla Terrazza, crea un clima intimo e familiare, tra le mura del Casale da una parte e la campagna dall’altra. Il Pozzo inoltre può essere adibito a Punto Torta, in pieno stile Casale. ",
     events: "Degustazioni esclusive, eventi storici e momenti fotografici dal fascino rurale.",
     images: [
       { src: "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHVonSxP3hrNXclNrJB4EP27zlO0W0Gl57Rkitu8OMc48eQGQ8ntwvc788WLMcQY5aZubXtXJO2NUuq4J3RMCMHm1YuGMJtpvzSCdo0yO53dO66DkRzYdC-FdE98JS0uzyXdOeftQ=s1360-w1360-h1020-rw", alt: "Zona Pozzo — dettagli architettonici in pietra" },

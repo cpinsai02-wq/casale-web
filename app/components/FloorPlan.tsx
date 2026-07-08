@@ -134,7 +134,7 @@ export function FloorPlan() {
         {/* Header di Sezione */}
         <div className="mb-16">
           <p className="font-sans text-[0.6875rem] tracking-[0.24em] uppercase text-[#8B6B4A] mb-4">
-            Explore the Estate
+            Esplora il casale
           </p>
           <div className="flex flex-row items-end justify-between flex-wrap gap-6">
             <h2 className="font-serif text-3xl md:text-5xl text-[#1C2B2D] max-w-[520px]">
@@ -156,7 +156,7 @@ export function FloorPlan() {
         <div className="bg-[#EDEEDD] border border-[#3F5D63]/12 rounded-[3px] p-6 flex justify-center">
           <svg
             viewBox={VIEW_BOX}
-            className="w-full max-w-[900px] block select-none h-auto drop-shadow-sm"
+            className="w-full max-w-[1200px] block select-none h-auto drop-shadow-sm"
             aria-label="Casale del Notaio floor plan"
             role="img"
           >

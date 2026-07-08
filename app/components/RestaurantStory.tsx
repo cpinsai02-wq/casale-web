@@ -38,20 +38,11 @@ export function RestaurantStory() {
         >
           {/* Left: text */}
           <div>
-            <p
-              style={{
-                fontFamily: "'Inter', system-ui, sans-serif",
-                fontSize: "0.6875rem",
-                letterSpacing: "0.24em",
-                textTransform: "uppercase",
-                color: "#8B6B4A",
-                marginBottom: "1.25rem",
-              }}
-            >
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1C2B2D] max-w-[520px]">
               La nostra storia
-            </p>
+            </h2>
             <h2 style={{ color: "#1C2B2D", marginBottom: "1.75rem" }}>
-              Una casa, un tavolo, una tradizione{" "}
+               Una casa, un tavolo, una tradizione{" "}
             </h2>
             <p
               style={{
