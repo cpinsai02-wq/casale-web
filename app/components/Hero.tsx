@@ -39,12 +39,13 @@ export function Hero() {
       <nav className="relative z-20 flex items-center justify-between px-8 py-6 md:px-16">
         {/* Logo */}
         <div className="flex flex-col text-[#D5D5B7]">
-          <span className="font-serif text-[1.4rem] font-medium tracking-wide leading-none">
-            CASALE
-          </span>
-          <span className="font-serif text-[0.7rem] tracking-[0.28em] font-normal text-[#8B6B4A] uppercase">
-            DEL NOTAIO
-          </span>
+          <Image
+        src="/images/logo_orizzontale.svg"
+        alt="Logo del Casale"
+        width={200}
+        height={100}
+        priority
+      />
         </div>
 
         {/* Desktop Nav */}
