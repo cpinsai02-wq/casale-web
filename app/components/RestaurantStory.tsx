@@ -53,8 +53,7 @@ export function RestaurantStory() {
                 marginBottom: "2rem",
               }}
             >
-              Casale del Notaio nasce da una domanda semplice: cosa accadrebbe se i migliori ingredienti della Sicilia potessero essere celebrati in un luogo degno del loro valore? Immersa tra uliveti e antiche mura in pietra, la nostra tenuta accoglie gli ospiti dal 1998 con discrezione, dedizione e una cura che dura nel tempo.
-              </p>
+              Il Casale del Notaio nasce da una domanda semplice: cosa accadrebbe se i migliori ingredienti della Sicilia potessero essere celebrati in un luogo degno del loro valore? Immerso nel verde tra antiche mura e ortaggi, il nostro locale accoglie gli ospiti dal 2008 con discrezione, dedizione e una cura che dura nel tempo.</p>
             <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
@@ -66,7 +65,7 @@ export function RestaurantStory() {
                 paddingLeft: "1.5rem",
               }}
             >
-              "Il casale del notaio, del gusto il Teatro."
+              "Il Casale del Notaio, del gusto il Teatro."
             </p>
           </div>
 

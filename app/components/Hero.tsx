@@ -67,7 +67,7 @@ export function Hero() {
           onClick={() => scrollTo("#footer")}
           className="hidden md:inline-flex items-center font-sans text-[0.75rem] tracking-widest uppercase text-[#F7F7F4] border border-[#D5D5B7]/40 hover:border-[#D5D5B7]/70 hover:bg-[#D5D5B7]/10 px-5 py-2 rounded-[2px] transition-all duration-250"
         >
-          Prenota un tavolo
+          Contattaci
         </button>
 
         {/* Mobile toggle */}
@@ -97,7 +97,7 @@ export function Hero() {
 
       {/* Hero content */}
       <div className="relative z-10 flex flex-col flex-1 justify-end px-8 pb-20 md:px-16 md:pb-28 max-w-5xl">
-        <p className="font-sans text-[0.75rem] tracking-[0.22em] uppercase text-[#8B6B4A] mb-6">
+        <p className="font-sans text-[0.75rem] tracking-[0.22em] uppercase text-[#F7F7F4] mb-6">
           Fine Dining · Eventi esclusivi · Sicilia
         </p>
 
