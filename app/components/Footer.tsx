@@ -1,4 +1,5 @@
 import { Instagram, Facebook, MapPin, Phone, Mail, Clock } from "lucide-react";
+import Image from "next/image";
 
 const SOCIAL_LINKS = [
   { icon: Instagram, label: "Instagram", href: "#" },
@@ -52,12 +53,13 @@ export function Footer() {
           {/* Logo + description */}
           <div className="space-y-6">
             <div>
-              <div className="font-serif text-2xl font-medium text-[#D5D5B7] tracking-wide leading-none">
-                CASALE
-              </div>
-              <div className="font-serif text-[0.7rem] tracking-[0.28em] font-normal text-[#8B6B4A] uppercase mt-1">
-                DEL NOTAIO
-              </div>
+              <Image
+                      src="/images/logo_orizzontale.svg"
+                      alt="Logo del Casale"
+                      width={200}
+                      height={100}
+                      priority
+                    />
             </div>
             <p className="font-sans text-sm leading-relaxed text-[#D5D5B7]/60 max-w-[260px]">
               Una storica tenuta siciliana dedita ai piaceri della tavola, al calore dell'ospitalità e all'arte del celebrare.
