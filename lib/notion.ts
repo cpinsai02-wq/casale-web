@@ -103,48 +103,52 @@ export async function getMenuCompleto(): Promise<MenuCategoria[]> {
 
   const results = response.results || [];
 
-return results.map((page: any) => {
-  const idProp = page.properties.Id;
-  const nomeProp = page.properties.Nome;
-  const prezzoProp = page.properties.Prezzo;
-  const relazioniPiattiProp = page.properties.Piatti;
-  const fotoProp = page.properties.Foto;
+  const menuList = results.map((page: any) => {
+    const idProp = page.properties.Id;
+    const nomeProp = page.properties.Nome;
+    const prezzoProp = page.properties.Prezzo;
+    const relazioniPiattiProp = page.properties.Piatti;
+    const fotoProp = page.properties.Foto;
 
-  let piattiInMenu: PiattoDettaglio[] = [];
-  
-  if (relazioniPiattiProp?.type === 'relation') {
-    piattiInMenu = relazioniPiattiProp.relation
-      .map((rel: any) => piattiMap[rel.id])
-      .filter(Boolean);
+    let piattiInMenu: PiattoDettaglio[] = [];
+    
+    if (relazioniPiattiProp?.type === 'relation') {
+      piattiInMenu = relazioniPiattiProp.relation
+        .map((rel: any) => piattiMap[rel.id])
+        .filter(Boolean);
 
-    piattiInMenu.sort((a, b) => {
-      const prioritaA = ORDINE_PORTATE[a.Categoria] || 99;
-      const prioritaB = ORDINE_PORTATE[b.Categoria] || 99;
-      return prioritaA - prioritaB;
-    });
-  }
+      piattiInMenu.sort((a, b) => {
+        const prioritaA = ORDINE_PORTATE[a.Categoria] || 99;
+        const prioritaB = ORDINE_PORTATE[b.Categoria] || 99;
+        return prioritaA - prioritaB;
+      });
+    }
 
+    let Foto: string[] = [];
+    
+    if (fotoProp?.type === 'files' && Array.isArray(fotoProp.files)) {
+      Foto = fotoProp.files.map((fileObj: any) => {
+        if (fileObj.type === 'file') {
+          return fileObj.file?.url || '';
+        } else if (fileObj.type === 'external') {
+          return fileObj.external?.url || '';
+        }
+        return '';
+      }).filter(Boolean); 
+    }
 
-  let Foto: string[] = [];
-  
-  if (fotoProp?.type === 'files' && Array.isArray(fotoProp.files)) {
-    Foto = fotoProp.files.map((fileObj: any) => {
-      if (fileObj.type === 'file') {
-        return fileObj.file?.url || '';
-      } else if (fileObj.type === 'external') {
-        return fileObj.external?.url || '';
-      }
-      return '';
-    }).filter(Boolean); 
-  }
+    return {
+      Id: idProp?.type === 'unique_id' ? idProp.unique_id?.number || 0 : 0,
+      Nome: nomeProp?.type === 'title' ? nomeProp.title[0]?.plain_text || 'Senza nome' : 'Senza nome',
+      Prezzo: prezzoProp?.type === 'number' ? prezzoProp.number : 0,
+      Piatti: piattiInMenu,
+      Foto: Foto, 
+    };
+  });
 
+  // Ordinamento dei menu 
 
-  return {
-    Id: idProp?.type === 'unique_id' ? idProp.unique_id?.number || 0 : 0,
-    Nome: nomeProp?.type === 'title' ? nomeProp.title[0]?.plain_text || 'Senza nome' : 'Senza nome',
-    Prezzo: prezzoProp?.type === 'number' ? prezzoProp.number : 0,
-    Piatti: piattiInMenu,
-    Foto: Foto, 
-  };
-});
+//return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Id - b.Id);
+  // return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Prezzo - b.Prezzo); // Per Prezzo (dal più economico)
+ return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Nome.localeCompare(b.Nome)); // Alfabetico
 }
