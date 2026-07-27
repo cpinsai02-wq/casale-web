@@ -165,18 +165,6 @@ export function MenuCard({ menu, onOpenModal }: { menu: MenuCategoria; onOpenMod
         >
           {menu.Nome}
         </h3>
-        <p
-          style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
-            fontSize: "0.9rem",
-            lineHeight: 1.7,
-            color: "#4A5558",
-            marginBottom: "1.25rem",
-            flex: 1,
-          }}
-        >
-          Una selezione esclusiva di {menu.Piatti?.length || 0} portate, preparata con gli ingredienti più freschi della nostra tenuta.
-        </p>
 
         {/* Highlights: Mostra solo i primi 3 piatti del menu */}
         <ul style={{ marginBottom: "1.5rem", listStyle: "none", padding: 0 }}>

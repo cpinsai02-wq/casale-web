@@ -26,8 +26,7 @@ export function Footer() {
               Pianifica la tua visita
             </p>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-[#F7F7F4] leading-tight">
-              Prenota il tuo tavolo<br />
-              <em className="text-[#D5D5B7] not-italic italic">o uno spazio privato</em>
+              Richiedi un appuntamento<br />
             </h2>
           </div>
           
@@ -36,13 +35,13 @@ export function Footer() {
               href="tel:+393401090100"
               className="font-sans text-[0.8125rem] tracking-widest uppercase font-medium text-[#F7F7F4] bg-[#355A63] hover:bg-[#2A4A52] px-8 py-3.5 rounded-[2px] transition-colors duration-250 no-underline inline-flex items-center"
             >
-              Chiama per prenotare
+              Chiama per info
             </a>
             <a
               href="https://wa.me/393401090100"
               className="font-sans text-[0.8125rem] tracking-widest uppercase font-medium text-[#D5D5B7] bg-transparent border border-[#D5D5B7]/35 hover:border-[#D5D5B7]/60 hover:bg-[#D5D5B7]/8 px-8 py-3.5 rounded-[2px] transition-all duration-250 no-underline inline-flex items-center"
             >
-              Invia una richiesta
+              Invia un messaggio
             </a>
           </div>
         </div>
@@ -54,7 +53,7 @@ export function Footer() {
           <div className="space-y-6">
             <div>
               <Image
-                      src="/images/logo_orizzontale.svg"
+                      src="/images/logo_vert.svg"
                       alt="Logo del Casale"
                       width={200}
                       height={100}

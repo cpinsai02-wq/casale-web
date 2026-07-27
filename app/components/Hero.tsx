@@ -98,7 +98,7 @@ export function Hero() {
       {/* Hero content */}
       <div className="relative z-10 flex flex-col flex-1 justify-end px-8 pb-20 md:px-16 md:pb-28 max-w-5xl">
         <p className="font-sans text-[0.75rem] tracking-[0.22em] uppercase text-[#F7F7F4] mb-6">
-          Fine Dining · Eventi esclusivi · Sicilia
+          Eventi esclusivi · Sicilia
         </p>
 
         <h1 className="text-[#F7F7F4] text-4xl md:text-6xl font-serif mb-6 max-w-[780px] leading-tight">

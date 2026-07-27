@@ -10,18 +10,26 @@ interface CreateYourOwnMenuProps {
 const WHATSAPP_NUMBER = "393401090100";
 
 export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
-  // Trova l'antipasto fisso (assumendo che ce ne sia solo uno)
+  // Trova i piatti predefiniti (Antipasti e Bevande)
   const antipastoFisso = piatti["Antipasto"]?.[0];
+  const bevandeFisse = piatti["Bevande"] || [];
 
-  // Inizializza lo stato con l'antipasto già presente, se esiste
+  // Funzione helper per ottenere la lista dei piatti selezionati di default
+  const getDefaultSelectedPiatti = (): PiattoDettaglio[] => {
+    const defaults: PiattoDettaglio[] = [];
+    if (antipastoFisso) defaults.push(antipastoFisso);
+    if (bevandeFisse.length > 0) defaults.push(...bevandeFisse);
+    return defaults;
+  };
+
+  // Inizializza lo stato con antipasto e bevande di default
   const [selectedPiatti, setSelectedPiatti] = useState<PiattoDettaglio[]>(
-    antipastoFisso ? [antipastoFisso] : []
+    getDefaultSelectedPiatti()
   );
   const [menuName, setMenuName] = useState("");
 
   const togglePiatto = (piatto: PiattoDettaglio) => {
-    // Impedisci la deselezione dell'antipasto
-    if (piatto.Categoria === "Antipasto") return;
+    if (piatto.Categoria === "Antipasto" || piatto.Categoria === "Bevande") return;
 
     setSelectedPiatti((prev) => {
       const isSelected = prev.some((p) => p.Id === piatto.Id);
@@ -141,7 +149,7 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
               <div key={category} className="mb-12">
                 <h3 className="font-serif text-xl font-medium text-[#1C2B2D] mb-5 pb-2 border-b-2 border-[#8B6B4A]">
                   {category}
-                  {category === "Antipasto" && (
+                  {(category === "Antipasto" || category === "Bevande") && (
                     <span className="text-xs font-sans text-[#8B6B4A] ml-3 italic">
                       (Selezionato di default)
                     </span>
@@ -150,7 +158,7 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
                   {piatti[category].map((piatto) => {
                     const isSelected = selectedPiatti.some((p) => p.Id === piatto.Id);
-                    const isAntipasto = piatto.Categoria === "Antipasto";
+                    const isLocked = piatto.Categoria === "Antipasto" || piatto.Categoria === "Bevande";
 
                     return (
                       <button
@@ -158,7 +166,7 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
                         onClick={() => togglePiatto(piatto)}
                         className={`p-3.5 px-4 rounded-none transition-all duration-300 text-left flex items-start gap-2.5 
                           ${isSelected ? "bg-[#355A63] border-2 border-[#355A63]" : "bg-[#F7F7F4] border border-[#3F5D63]/15"}
-                          ${isAntipasto ? "cursor-default opacity-95" : "cursor-pointer hover:border-[#355A63] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(53,90,99,0.15)]"}
+                          ${isLocked ? "cursor-default opacity-95" : "cursor-pointer hover:border-[#355A63] hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(53,90,99,0.15)]"}
                         `}
                       >
                         <div
@@ -277,7 +285,7 @@ export function CreateYourOwnMenu({ piatti }: CreateYourOwnMenuProps) {
               
               <button
                 onClick={() => {
-                  setSelectedPiatti(antipastoFisso ? [antipastoFisso] : []);
+                  setSelectedPiatti(getDefaultSelectedPiatti());
                   setMenuName("");
                 }}
                 className="font-sans text-[0.8125rem] tracking-[0.12em] uppercase font-semibold text-[#5A6668] bg-transparent border-[1.5px] border-[#D5D5B7] p-3.5 rounded-none cursor-pointer transition-all duration-300 w-full hover:border-[#8B6B4A] hover:bg-[#8B6B4A]/5"
