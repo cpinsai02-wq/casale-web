@@ -40,7 +40,7 @@ export function Hero() {
         {/* Logo */}
         <div className="flex flex-col text-[#D5D5B7]">
           <Image
-        src="/images/logo_orizzontale.svg"
+        src="/images/logo_vert.svg"
         alt="Logo del Casale"
         width={200}
         height={100}

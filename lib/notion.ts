@@ -16,7 +16,7 @@ export interface MenuCategoria {
   Nome: string;
   Prezzo: number;
   Piatti: PiattoDettaglio[];
-  Foto: string; 
+  Foto: string[]; 
 }
 
 const ORDINE_PORTATE: Record<string, number> = {
@@ -103,41 +103,48 @@ export async function getMenuCompleto(): Promise<MenuCategoria[]> {
 
   const results = response.results || [];
 
-  return results.map((page: any) => {
-    const idProp = page.properties.Id;
-    const nomeProp = page.properties.Nome;
-    const prezzoProp = page.properties.Prezzo;
-    const relazioniPiattiProp = page.properties.Piatti;
-    const fotoProp = page.properties.Foto;
+return results.map((page: any) => {
+  const idProp = page.properties.Id;
+  const nomeProp = page.properties.Nome;
+  const prezzoProp = page.properties.Prezzo;
+  const relazioniPiattiProp = page.properties.Piatti;
+  const fotoProp = page.properties.Foto;
 
-    let piattiInMenu: PiattoDettaglio[] = [];
-    
-    if (relazioniPiattiProp?.type === 'relation') {
-      piattiInMenu = relazioniPiattiProp.relation
-        .map((rel: any) => piattiMap[rel.id])
-        .filter(Boolean);
+  let piattiInMenu: PiattoDettaglio[] = [];
+  
+  if (relazioniPiattiProp?.type === 'relation') {
+    piattiInMenu = relazioniPiattiProp.relation
+      .map((rel: any) => piattiMap[rel.id])
+      .filter(Boolean);
 
-      // --- ORDINAMENTO DEI PIATTI QUI ---
-      piattiInMenu.sort((a, b) => {
-        // Recupera la priorità, se la categoria non è mappata assegna un valore alto (es. 99) per metterla in fondo
-        const prioritaA = ORDINE_PORTATE[a.Categoria] || 99;
-        const prioritaB = ORDINE_PORTATE[b.Categoria] || 99;
-        return prioritaA - prioritaB;
-      });
-    }
+    piattiInMenu.sort((a, b) => {
+      const prioritaA = ORDINE_PORTATE[a.Categoria] || 99;
+      const prioritaB = ORDINE_PORTATE[b.Categoria] || 99;
+      return prioritaA - prioritaB;
+    });
+  }
 
-    let Foto = '';
-    if (fotoProp?.type === 'files' && fotoProp.files && fotoProp.files.length > 0) {
-      const fileObj = fotoProp.files[0];
-      Foto = fileObj.type === 'file' ? fileObj.file?.url : fileObj.external?.url || '';
-    }
 
-    return {
-      Id: idProp?.type === 'unique_id' ? idProp.unique_id?.number || 0 : 0,
-      Nome: nomeProp?.type === 'title' ? nomeProp.title[0]?.plain_text || 'Senza nome' : 'Senza nome',
-      Prezzo: prezzoProp?.type === 'number' ? prezzoProp.number : 0,
-      Piatti: piattiInMenu,
-      Foto: Foto,
-    };
-  });
+  let Foto: string[] = [];
+  
+  if (fotoProp?.type === 'files' && Array.isArray(fotoProp.files)) {
+    Foto = fotoProp.files.map((fileObj: any) => {
+      if (fileObj.type === 'file') {
+        return fileObj.file?.url || '';
+      } else if (fileObj.type === 'external') {
+        return fileObj.external?.url || '';
+      }
+      return '';
+    }).filter(Boolean); 
+  }
+
+
+  return {
+    Id: idProp?.type === 'unique_id' ? idProp.unique_id?.number || 0 : 0,
+    Nome: nomeProp?.type === 'title' ? nomeProp.title[0]?.plain_text || 'Senza nome' : 'Senza nome',
+    Prezzo: prezzoProp?.type === 'number' ? prezzoProp.number : 0,
+    Piatti: piattiInMenu,
+    Foto: Foto, 
+  };
+});
 }
