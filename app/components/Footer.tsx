@@ -162,7 +162,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-[#D5D5B7]/10 pt-8 flex flex-wrap items-center justify-between gap-4">
           <p className="font-sans text-[0.75rem] text-[#D5D5B7]/35">
-            © {new Date().getFullYear()} Casale del Notaio. Tutti i diritti riservati. Designed by <a href="https://www.instagram.com/pellegrinopierpaolo" className="text-[#D5D5B7]/65 hover:text-[#D5D5B7] no-underline transition-colors duration-200">Pierpy</a>.
+            © {new Date().getFullYear()} Casale del Notaio. Tutti i diritti riservati. Designed by <a href="https://cpinsai.it/" className="text-[#D5D5B7]/65 hover:text-[#D5D5B7] no-underline transition-colors duration-200">C.PINSAI</a>
           </p>
           <p className="font-sans text-[0.75rem] text-[#D5D5B7]/35">
             Privacy Policy · Cookie Policy

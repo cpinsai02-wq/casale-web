@@ -1,4 +1,4 @@
-"use client"; // Obbligatorio per far funzionare i click e la modale
+"use client";
 
 import { useState } from "react";
 import { MenuCard } from "./MenuCard";
@@ -9,84 +9,39 @@ export function SeasonalMenus({ menus }: { menus: MenuCategoria[] }) {
   const [selectedMenu, setSelectedMenu] = useState<MenuCategoria | null>(null);
 
   return (
-    <section
-      id="menus"
-      style={{
-        background: "#EDEEDD",
-        padding: "7rem 0",
-      }}
-    >
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}>
+    <section id="menus" className="bg-[#EDEEDD] py-16 md:py-16 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-8">
         
         {/* Section header */}
-        <div style={{ marginBottom: "4rem" }}>
-          <p
-            style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
-              fontSize: "0.6875rem",
-              letterSpacing: "0.24em",
-              textTransform: "uppercase",
-              color: "#8B6B4A",
-              marginBottom: "1rem",
-            }}
-          >
+        <div className="mb-12 md:mb-16">
+          <p className="font-sans text-[0.6875rem] tracking-[0.24em] uppercase text-[#8B6B4A] mb-4">
             Un tavolo per ogni occasione
           </p>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "flex-end",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "1.5rem",
-            }}
-          >
-            <h2
-              style={{
-                color: "#1C2B2D",
-                maxWidth: "520px",
-              }}
-            >
-              I nostri menu
+          
+          <div className="flex flex-row flex-wrap items-end justify-between gap-6">
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1C2B2D] max-w-[520px] m-0">
+              I nostri menù
             </h2>
-            <p
-              style={{
-                fontFamily: "'Inter', system-ui, sans-serif",
-                fontSize: "0.9375rem",
-                lineHeight: 1.7,
-                color: "#5A6668",
-                maxWidth: "360px",
-              }}
-            >
+            <p className="font-sans text-[0.9375rem] leading-[1.7] text-[#5A6668] max-w-[360px] m-0">
               La nostra cucina segue il ritmo della natura. Ogni menu viene ricreato con il mutare delle stagioni — utilizzando i prodotti della tenuta e di fornitori locali.
-              </p>
+            </p>
           </div>
 
-          <div
-            style={{
-              width: "48px",
-              height: "1px",
-              background: "#8B6B4A",
-              marginTop: "2.5rem",
-            }}
-          />
+          <div className="w-12 h-px bg-[#8B6B4A] mt-10" />
         </div>
 
-        {/* Menu cards grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: "1.5rem",
-          }}
-        >
+        {/* Menu cards grid (Desktop) / Slider (Mobile) */}
+        <div className="flex md:grid md:grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4 md:gap-6 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory hide-scrollbar pb-8 -mx-8 px-8 md:mx-0 md:px-0 md:pb-0">
           {Array.isArray(menus) && menus.map((menu) => (
-            <MenuCard 
+            <div 
               key={menu.Id} 
-              menu={menu} 
-              onOpenModal={() => setSelectedMenu(menu)} 
-            />
+              className="shrink-0 w-[85vw] sm:w-[320px] md:w-auto snap-center md:snap-align-none"
+            >
+              <MenuCard 
+                menu={menu} 
+                onOpenModal={() => setSelectedMenu(menu)} 
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -94,11 +49,22 @@ export function SeasonalMenus({ menus }: { menus: MenuCategoria[] }) {
       {/* Modal renderization */}
       {selectedMenu && (
         <MenuModal 
-        isOpen={selectedMenu !== null} 
-        onClose={() => setSelectedMenu(null)} 
-        cat={selectedMenu}
-      />
+          isOpen={selectedMenu !== null} 
+          onClose={() => setSelectedMenu(null)} 
+          cat={selectedMenu}
+        />
       )}
+
+      {/* Nasconde la scrollbar del browser mantenendo la funzionalità */}
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }

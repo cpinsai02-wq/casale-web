@@ -5,6 +5,7 @@ import { RestaurantStory } from "./components/RestaurantStory";
 import { FloorPlan } from "./components/FloorPlan";
 import { Footer } from "./components/Footer";
 import { getMenuCompleto, getTuttiPiatti } from "@/lib/notion";
+import { SetupsGallery } from "./components/SetupsGallery";
 
 export default async function App() {
 
@@ -24,6 +25,7 @@ export default async function App() {
 
       <RestaurantStory />
       <FloorPlan />
+      <SetupsGallery />
       <Footer />
     </div>
   );

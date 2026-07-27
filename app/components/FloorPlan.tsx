@@ -14,7 +14,7 @@ function FloorStructure() {
       <line x1={365} y1={178} x2={365} y2={119} stroke="#1C2B2D" strokeWidth={1.5} />
       <line x1={365} y1={119} x2={422} y2={119} stroke="#1C2B2D" strokeWidth={1.5} />
 
-      {/* Rosa dei venti geometrica minimale integrata in alto a destra */}
+      {/* Rosa dei venti  */}
       <g transform="translate(740, 40)">
         <line x1={0} y1={-12} x2={0} y2={12} stroke="rgba(63,93,99,0.3)" strokeWidth={1} />
         <line x1={-12} y1={0} x2={12} y2={0} stroke="rgba(63,93,99,0.3)" strokeWidth={1} />
@@ -39,17 +39,37 @@ function RoomShape({
   onHover: () => void;
   onLeave: () => void;
 }) {
-  const { x, y, w, h } = room.svgRect;
-  const cx = x + w / 2;
-  const cy = y + h / 2;
-
-  const fill = isSelected
-    ? "#355A63"
-    : isHovered
-    ? "#3F5D63"
-    : "#D5D5B7";
-
+  // 1. Colori dinamici per stato
+  const fill = isSelected ? "#355A63" : isHovered ? "#3F5D63" : "#D5D5B7";
+  const strokeColor = isSelected ? "#355A63" : "#1C2B2D";
   const labelColor = isSelected || isHovered ? "fill-[#D5D5B7]/75" : "fill-[#8B6B4A]";
+
+  // 2. Calcolo del centro (cx, cy) sia per Rettangolo che per Poligono
+  let cx = 0;
+  let cy = 0;
+
+  if (room.svgRect) {
+    cx = room.svgRect.x + room.svgRect.w / 2;
+    cy = room.svgRect.y + room.svgRect.h / 2;
+  } else if (room.svgPolygon) {
+    // Troviamo il centro calcolando il rettangolo esterno del poligono
+    const points = room.svgPolygon.trim().split(/\s+/);
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    
+    points.forEach((pt) => {
+      const [px, py] = pt.split(",").map(Number);
+      if (px < minX) minX = px;
+      if (px > maxX) maxX = px;
+      if (py < minY) minY = py;
+      if (py > maxY) maxY = py;
+    });
+    
+    cx = minX + (maxX - minX) / 2;
+    cy = minY + (maxY - minY) / 2;
+  }
+  if (room.id === "pozzo") {
+    cy += 25; // Sposta il testo verso il basso di 35 pixel
+  }
 
   return (
     <g
@@ -61,17 +81,28 @@ function RoomShape({
       aria-pressed={isSelected}
       aria-label={`Select ${room.name}`}
     >
-      <rect
-        x={x}
-        y={y}
-        width={w}
-        height={h}
-        rx={2}
-        fill={fill}
-        stroke={isSelected ? "#355A63" : "#1C2B2D"}
-        strokeWidth={isSelected ? 0 : 2}
-        className="transition-all duration-250"
-      />
+      {/* Renderizza Polygon o Rect in base a cosa possiede la stanza */}
+      {room.svgPolygon ? (
+        <polygon
+          points={room.svgPolygon}
+          fill={fill}
+          stroke={strokeColor}
+          strokeWidth={isSelected ? 0 : 2}
+          className="transition-all duration-250"
+        />
+      ) : room.svgRect ? (
+        <rect
+          x={room.svgRect.x}
+          y={room.svgRect.y}
+          width={room.svgRect.w}
+          height={room.svgRect.h}
+          rx={2}
+          fill={fill}
+          stroke={strokeColor}
+          strokeWidth={isSelected ? 0 : 2}
+          className="transition-all duration-250"
+        />
+      ) : null}
       
       {/* Nome della sala */}
       <text
@@ -128,7 +159,7 @@ export function FloorPlan() {
   };
 
   return (
-    <section id="spaces" className="bg-[#F7F7F4] py-32 border-t border-[#3F5D63]/10">
+    <section id="spaces" className="bg-[#F7F7F4] py-16 border-t border-[#3F5D63]/10">
       <div className="max-w-[1280px] mx-auto px-8">
         
         {/* Header di Sezione */}
