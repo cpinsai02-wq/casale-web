@@ -37,9 +37,9 @@ export function RestaurantStory() {
 
           {/* Testo Grigio + Icona + */}
           <div className="flex items-center gap-3">
-            <span className="font-sans text-sm tracking-wider font-medium text-gray-500">
-              {isOpen ? "Riduci" : "Scopri di più"}
-            </span>
+            <span className="font-sans text-xs md:text-sm tracking-wider font-medium text-gray-500">
+  {isOpen ? "Riduci" : "Scopri di più"}
+</span>
             <span
               className={`text-3xl text-[#3F5D63] font-light leading-none transition-transform duration-300 ${
                 isOpen ? "rotate-45" : "rotate-0"
