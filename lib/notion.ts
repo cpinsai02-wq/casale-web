@@ -148,7 +148,7 @@ export async function getMenuCompleto(): Promise<MenuCategoria[]> {
 
   // Ordinamento dei menu 
 
-//return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Id - b.Id);
-  // return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Prezzo - b.Prezzo); // Per Prezzo (dal più economico)
+//return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Id - b.Id); // Per ID (dal più vecchio al più recente)
+// return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Prezzo - b.Prezzo); // Per Prezzo (dal più economico)
  return menuList.sort((a: MenuCategoria, b: MenuCategoria) => a.Nome.localeCompare(b.Nome)); // Alfabetico
 }
