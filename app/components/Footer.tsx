@@ -143,7 +143,7 @@ export function Footer() {
                 ["Menù", "#menus"],
                 ["La nostra storia", "#story"],
                 ["Location & Spazi", "#spaces"],
-                ["Eventi privati", "#spaces"],
+                ["Eventi privati", "#setup"],
                 ["Prenota un tavolo", "#footer"],
               ].map(([label, href]) => (
                 <li key={label}>
