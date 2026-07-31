@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 interface GalleryItem {
   id: number;
   title: string;
   category: string;
-  src: string;
-  alt: string;
+  images: { src: string; alt: string }[];
   objectPosition?: string;
 }
 
@@ -15,71 +15,77 @@ const GALLERY_ITEMS: GalleryItem[] = [
   // --- FOTO VISIBILI NELLA GRIGLIA PRINCIPALE ---
   {
     id: 1,
-    title: "Tavolate Imperiali",
+    title: "Decorazione Tavoli",
     category: "Eventi & Banchetti",
-    src: "https://images.unsplash.com/photo-1776848517525-ccc3a43bfcfb?w=1200&q=80",
-    alt: "Tavolate Imperiali",
+    images: [
+      { src: "/images/allestimento-tavoli/first.webp", alt: "Tavolate Imperiali" },
+      { src: "/images/allestimento-tavoli/second.webp", alt: "Centrotavola" },
+      { src: "/images/allestimento-tavoli/third.webp", alt: "Buffet" },
+      { src: "/images/allestimento-tavoli/fourth.webp", alt: "Decorazione" },
+    ]
   },
   {
     id: 2,
     title: "La cura del dettaglio",
     category: "Mise en place",
-    src: "https://images.unsplash.com/photo-1694021408920-922ff450c525?w=800&q=80",
-    alt: "La cura del dettaglio",
+    images: [
+      { src: "/images/mise-en-place/first.webp", alt: "La cura del dettaglio" },
+      { src: "/images/mise-en-place/second.webp", alt: "Decorazione" },
+      { src: "/images/mise-en-place/third.webp", alt: "Decorazione" },
+      { src: "/images/mise-en-place/fourth.webp", alt: "Decorazione" },
+      { src: "/images/mise-en-place/fifth.webp", alt: "Decorazione" },
+      { src: "/images/mise-en-place/sixth.webp", alt: "Decorazione" },
+    ]
   },
   {
     id: 3,
     title: "Atmosfere all'aperto",
     category: "Terrazza & Esterni",
-    src: "https://images.unsplash.com/photo-1766832255363-c9f060ade8b0?w=800&q=80",
-    alt: "Atmosfere all'aperto",
-    objectPosition: "object-bottom",
+    images: [
+      { src: "/images/allestimento-esterni/first.webp", alt: "Atmosfere all'aperto" },
+      { src: "/images/allestimento-esterni/second.webp", alt: "Decorazione" },
+      { src: "/images/allestimento-esterni/third.webp", alt: "Decorazione" },
+      { src: "/images/allestimento-esterni/fourth.webp", alt: "Decorazione" },
+      { src: "/images/allestimento-esterni/fifth.webp", alt: "Decorazione" },
+      { src: "/images/allestimento-esterni/sixth.webp", alt: "Decorazione" },
+      { src: "/images/allestimento-esterni/seventh.webp", alt: "Decorazione" },
+    ]
   },
   {
     id: 4,
     title: "Angolo Torta e Foto",
     category: "Eventi & Banchetti",
-    src: "https://images.unsplash.com/photo-1778591103012-eb50e49f8ec2?w=1200&q=80",
-    alt: "Luce soffusa",
-  },
-  {
-    id: 5,
-    title: "Allestimento Floreale",
-    category: "Eventi & Banchetti",
-    src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=80",
-    alt: "Fiori e tavoli",
-  },
-  {
-    id: 6,
-    title: "Cristalli e Porcellane",
-    category: "Mise en place",
-    src: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80",
-    alt: "Dettagli tavola",
-  },
-  {
-    id: 7,
-    title: "Giardino Illuminato",
-    category: "Terrazza & Esterni",
-    src: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80",
-    alt: "Esterno notte",
-  },
-  {
-    id: 8,
-    title: "Banchetto Serale",
-    category: "Eventi & Banchetti",
-    src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&q=80",
-    alt: "Luce serale",
+    images: [
+      { src: "/images/tavoli-torte/first.webp", alt: "Angolo Torta e Foto" },
+      { src: "/images/tavoli-torte/second.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/third.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/fourth.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/fifth.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/sixth.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/seventh.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/foto1.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/foto2.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/foto3.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/foto4.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/foto5.webp", alt: "Decorazione" },
+      { src: "/images/tavoli-torte/foto6.webp", alt: "Decorazione" },
+    ]
   },
 ];
 
 export function SetupsGallery() {
-  const [activeImage, setActiveImage] = useState<GalleryItem | null>(null);
+  // Gestiamo sia la categoria attiva che la singola foto attiva all'interno della modale
+  const [activeGallery, setActiveGallery] = useState<GalleryItem | null>(null);
+  const [activePhotoIndex, setActivePhotoIndex] = useState<number>(0);
 
-  const relatedImages = activeImage 
-    ? GALLERY_ITEMS.filter((item) => item.category === activeImage.category)
-    : [];
+  const openModal = (item: GalleryItem) => {
+    setActiveGallery(item);
+    setActivePhotoIndex(0);
+  };
 
-  const closeModal = () => setActiveImage(null);
+  const closeModal = () => {
+    setActiveGallery(null);
+  };
 
   return (
     <>
@@ -105,16 +111,18 @@ export function SetupsGallery() {
           
           {/* Colonna 1 */}
           <div 
-            onClick={() => setActiveImage(GALLERY_ITEMS[0])}
+            onClick={() => openModal(GALLERY_ITEMS[0])}
             className="shrink-0 w-[85vw] md:w-[45vw] h-full relative rounded-[2px] overflow-hidden snap-center bg-[#152022] cursor-pointer group"
           >
-            <img
-              src={GALLERY_ITEMS[0].src}
-              alt={GALLERY_ITEMS[0].alt}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            <Image
+              src={GALLERY_ITEMS[0].images[0].src}
+              alt={GALLERY_ITEMS[0].images[0].alt}
+              fill
+              sizes="(max-width: 768px) 85vw, 45vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90" />
-            <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90 z-10" />
+            <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 z-20">
               <span className="font-sans text-[0.625rem] tracking-[0.2em] uppercase text-[#D5D5B7] block mb-1">
                 {GALLERY_ITEMS[0].category}
               </span>
@@ -128,16 +136,18 @@ export function SetupsGallery() {
           <div className="shrink-0 w-[75vw] md:w-[35vw] h-full flex flex-col gap-4 md:gap-6 snap-center">
             {/* Foto superiore */}
             <div 
-              onClick={() => setActiveImage(GALLERY_ITEMS[1])}
+              onClick={() => openModal(GALLERY_ITEMS[1])}
               className="relative flex-1 rounded-[2px] overflow-hidden bg-[#152022] cursor-pointer group"
             >
-              <img
-                src={GALLERY_ITEMS[1].src}
-                alt={GALLERY_ITEMS[1].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              <Image
+                src={GALLERY_ITEMS[1].images[0].src}
+                alt={GALLERY_ITEMS[1].images[0].alt}
+                fill
+                sizes="(max-width: 768px) 75vw, 35vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90" />
-              <div className="absolute bottom-5 left-5 md:bottom-6 md:left-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90 z-10" />
+              <div className="absolute bottom-5 left-5 md:bottom-6 md:left-6 z-20">
                 <span className="font-sans text-[0.625rem] tracking-[0.2em] uppercase text-[#D5D5B7] block mb-1">
                   {GALLERY_ITEMS[1].category}
                 </span>
@@ -149,16 +159,18 @@ export function SetupsGallery() {
 
             {/* Foto inferiore */}
             <div 
-              onClick={() => setActiveImage(GALLERY_ITEMS[2])}
+              onClick={() => openModal(GALLERY_ITEMS[2])}
               className="relative flex-1 rounded-[2px] overflow-hidden bg-[#152022] cursor-pointer group"
             >
-              <img
-                src={GALLERY_ITEMS[2].src}
-                alt={GALLERY_ITEMS[2].alt}
-                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${GALLERY_ITEMS[2].objectPosition || ''}`}
+              <Image
+                src={GALLERY_ITEMS[2].images[0].src}
+                alt={GALLERY_ITEMS[2].images[0].alt}
+                fill
+                sizes="(max-width: 768px) 75vw, 35vw"
+                className={`object-cover transition-transform duration-700 group-hover:scale-105 ${GALLERY_ITEMS[2].objectPosition || ''}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90" />
-              <div className="absolute bottom-5 left-5 md:bottom-6 md:left-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90 z-10" />
+              <div className="absolute bottom-5 left-5 md:bottom-6 md:left-6 z-20">
                 <span className="font-sans text-[0.625rem] tracking-[0.2em] uppercase text-[#D5D5B7] block mb-1">
                   {GALLERY_ITEMS[2].category}
                 </span>
@@ -171,16 +183,18 @@ export function SetupsGallery() {
 
           {/* Colonna 3 */}
           <div 
-            onClick={() => setActiveImage(GALLERY_ITEMS[3])}
+            onClick={() => openModal(GALLERY_ITEMS[3])}
             className="shrink-0 w-[85vw] md:w-[50vw] h-full relative rounded-[2px] overflow-hidden snap-center bg-[#152022] cursor-pointer group"
           >
-            <img
-              src={GALLERY_ITEMS[3].src}
-              alt={GALLERY_ITEMS[3].alt}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            <Image
+              src={GALLERY_ITEMS[3].images[0].src}
+              alt={GALLERY_ITEMS[3].images[0].alt}
+              fill
+              sizes="(max-width: 768px) 85vw, 50vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90" />
-            <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C2B2D]/80 via-transparent to-transparent transition-opacity group-hover:opacity-90 z-10" />
+            <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 z-20">
               <span className="font-sans text-[0.625rem] tracking-[0.2em] uppercase text-[#D5D5B7] block mb-1">
                 {GALLERY_ITEMS[3].category}
               </span>
@@ -202,16 +216,16 @@ export function SetupsGallery() {
         `}</style>
       </section>
 
-      {/* --- MODALE GALLERIA --- */}
-      {activeImage && (
+      {/* --- MODALE GALLERIA  --- */}
+      {activeGallery && (
         <div 
           className="fixed inset-0 z-50 flex flex-col bg-[#0d1415]/98 animate-in fade-in duration-300"
           onClick={closeModal} 
         >
-          {/* Header Modale: Titolo Categoria e Bottone Chiudi */}
+          {/* Header Modale: Titolo e Bottone Chiudi */}
           <div className="flex justify-between items-center w-full px-6 py-6 md:px-12 md:py-8 shrink-0">
             <span className="font-sans text-xs tracking-[0.2em] uppercase text-[#D5D5B7]">
-              {activeImage.category}
+              {activeGallery.title}
             </span>
             <button 
               className="text-[#D5D5B7] hover:text-white transition-colors p-2"
@@ -225,21 +239,23 @@ export function SetupsGallery() {
             </button>
           </div>
 
-          {/* Immagine Principale e Titolo */}
+          {/* Immagine Principale */}
           <div 
             className="flex-1 flex flex-col justify-center items-center w-full px-4 overflow-hidden"
             onClick={(e) => e.stopPropagation()} 
           >
             <div className="relative w-full max-w-5xl h-[55vh] md:h-[65vh] flex justify-center items-center">
-              <img 
-                src={activeImage.src} 
-                alt={activeImage.alt} 
-                className="w-full h-full object-contain rounded-[2px]" 
+              <Image 
+                src={activeGallery.images[activePhotoIndex].src} 
+                alt={activeGallery.images[activePhotoIndex].alt} 
+                fill
+                className="object-contain rounded-[2px]" 
+                sizes="100vw"
               />
             </div>
             
             <h3 className="font-serif text-xl md:text-2xl text-white mt-6 md:mt-8 font-light tracking-wide text-center">
-              {activeImage.title}
+              {activeGallery.images[activePhotoIndex].alt}
             </h3>
           </div>
 
@@ -249,26 +265,28 @@ export function SetupsGallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex gap-3 md:gap-4 overflow-x-auto hide-scrollbar justify-start md:justify-center max-w-7xl mx-auto">
-              {relatedImages.map((item) => (
+              {activeGallery.images.map((photo, index) => (
                 <button
-                  key={item.id}
-                  onClick={() => setActiveImage(item)}
+                  key={index}
+                  onClick={() => setActivePhotoIndex(index)}
                   className="relative shrink-0 flex flex-col items-center group outline-none"
                 >
-                  <div className={`w-24 h-16 md:w-32 md:h-20 rounded-[2px] overflow-hidden transition-all duration-300 ${
-                      activeImage.id === item.id 
+                  <div className={`relative w-24 h-16 md:w-32 md:h-20 rounded-[2px] overflow-hidden transition-all duration-300 ${
+                      activePhotoIndex === index 
                         ? 'opacity-100 ring-1 ring-[#8B6B4A]' 
                         : 'opacity-40 group-hover:opacity-80'
                     }`}
                   >
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      className="w-full h-full object-cover"
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      sizes="(max-width: 768px) 96px, 128px"
+                      className="object-cover"
                     />
                   </div>
-                  {/* Sottile indicatore sotto la miniatura attiva */}
-                  <div className={`h-[2px] mt-2 bg-[#8B6B4A] transition-all duration-300 ${activeImage.id === item.id ? 'w-full' : 'w-0'}`} />
+                  {/* Indicatore sotto la miniatura attiva */}
+                  <div className={`h-[2px] mt-2 bg-[#8B6B4A] transition-all duration-300 ${activePhotoIndex === index ? 'w-full' : 'w-0'}`} />
                 </button>
               ))}
             </div>
