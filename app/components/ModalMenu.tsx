@@ -1,5 +1,5 @@
 "use client";
-
+export const dynamic = 'force-dynamic';
 import { X } from "lucide-react";
 import { useEffect } from "react";
 

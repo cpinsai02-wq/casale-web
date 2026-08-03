@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { MenuCategoria } from "@/lib/notion";
+export const dynamic = 'force-dynamic';
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=420&fit=crop&auto=format";
 

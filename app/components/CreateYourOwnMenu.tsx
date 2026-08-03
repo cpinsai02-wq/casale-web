@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { PiattoDettaglio } from "@/lib/notion";
-
+export const dynamic = 'force-dynamic';
 interface CreateYourOwnMenuProps {
   piatti: Record<string, PiattoDettaglio[]>;
 }
