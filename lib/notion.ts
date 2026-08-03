@@ -1,6 +1,14 @@
 import { Client, NumberedListItemBlockObjectResponse } from "@notionhq/client";
 export const dynamic = 'force-dynamic'
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
+const notion = new Client({
+  auth: process.env.NOTION_TOKEN,
+  fetch: (url, init) => {
+    return fetch(url, {
+      ...init,
+      cache: "no-store", // Disabilita la cache di Next.js per le chiamate a Notion
+    });
+  },
+});
 const MENU_DATABASE_ID = process.env.NOTION_DATABASE_ID as string;
 const PIATTI_DATABASE_ID = process.env.NOTION_PIATTI_DATABASE_ID as string;
 
