@@ -1,5 +1,5 @@
 import { Client, NumberedListItemBlockObjectResponse } from "@notionhq/client";
-
+export const dynamic = 'force-dynamic'
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const MENU_DATABASE_ID = process.env.NOTION_DATABASE_ID as string;
 const PIATTI_DATABASE_ID = process.env.NOTION_PIATTI_DATABASE_ID as string;
