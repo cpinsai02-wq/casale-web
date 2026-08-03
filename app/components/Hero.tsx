@@ -25,13 +25,13 @@ export function Hero() {
       {/* Hero background image */}
       <div className="absolute inset-0 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1773100699991-b7e6bf89a6a1?w=1920&h=1080&fit=crop&auto=format"
-          alt="Elegant dining room with arched windows at Casale del Notaio"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-35"
-        />
+  src="/images/mise-en-place/first.webp"
+  alt="Elegant dining room with arched windows at Casale del Notaio"
+  fill
+  priority
+  sizes="100vw"
+  className="object-cover opacity-35"
+/>
         <div className="absolute inset-0 bg-gradient-to-b from-[#1C2B2D]/60 via-[#1C2B2D]/30 to-[#1C2B2D]/80" />
       </div>
 

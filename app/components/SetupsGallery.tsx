@@ -74,7 +74,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
 ];
 
 export function SetupsGallery() {
-  // Gestiamo sia la categoria attiva che la singola foto attiva all'interno della modale
   const [activeGallery, setActiveGallery] = useState<GalleryItem | null>(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState<number>(0);
 
@@ -260,37 +259,37 @@ export function SetupsGallery() {
           </div>
 
           {/* Galleria Inferiore */}
-          <div 
-            className="w-full px-6 py-8 md:py-12 shrink-0 bg-gradient-to-t from-black/40 to-transparent"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex gap-3 md:gap-4 overflow-x-auto hide-scrollbar justify-start md:justify-center max-w-7xl mx-auto">
-              {activeGallery.images.map((photo, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActivePhotoIndex(index)}
-                  className="relative shrink-0 flex flex-col items-center group outline-none"
-                >
-                  <div className={`relative w-24 h-16 md:w-32 md:h-20 rounded-[2px] overflow-hidden transition-all duration-300 ${
-                      activePhotoIndex === index 
-                        ? 'opacity-100 ring-1 ring-[#8B6B4A]' 
-                        : 'opacity-40 group-hover:opacity-80'
-                    }`}
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      sizes="(max-width: 768px) 96px, 128px"
-                      className="object-cover"
-                    />
-                  </div>
-                  {/* Indicatore sotto la miniatura attiva */}
-                  <div className={`h-[2px] mt-2 bg-[#8B6B4A] transition-all duration-300 ${activePhotoIndex === index ? 'w-full' : 'w-0'}`} />
-                </button>
-              ))}
-            </div>
-          </div>
+<div 
+  className="w-full px-6 py-8 md:py-12 shrink-0 bg-gradient-to-t from-black/40 to-transparent"
+  onClick={(e) => e.stopPropagation()}
+>
+  <div className="flex gap-3 md:gap-4 overflow-x-auto hide-scrollbar justify-start md:justify-center max-w-7xl mx-auto">
+    {activeGallery.images.map((photo, index) => (
+      <button
+        key={photo.src} 
+        onClick={() => setActivePhotoIndex(index)}
+        className="relative shrink-0 flex flex-col items-center group outline-none"
+      >
+        <div className={`relative w-24 h-16 md:w-32 md:h-20 rounded-[2px] overflow-hidden transition-all duration-300 ${
+            activePhotoIndex === index 
+              ? 'opacity-100 ring-1 ring-[#8B6B4A]' 
+              : 'opacity-40 group-hover:opacity-80'
+          }`}
+        >
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            fill
+            sizes="(max-width: 768px) 96px, 128px"
+            className="object-cover"
+          />
+        </div>
+        {/* Indicatore sotto la miniatura attiva */}
+        <div className={`h-[2px] mt-2 bg-[#8B6B4A] transition-all duration-300 ${activePhotoIndex === index ? 'w-full' : 'w-0'}`} />
+      </button>
+    ))}
+  </div>
+</div>
         </div>
       )}
     </>
