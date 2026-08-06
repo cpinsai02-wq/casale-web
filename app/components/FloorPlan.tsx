@@ -175,27 +175,27 @@ export function FloorPlan() {
         </div>
 
         {/* Box Planimetria SVG */}
-        <div className="bg-[#EDEEDD] border border-[#3F5D63]/12 rounded-[3px] p-1.5 sm:p-6 flex justify-center overflow-x-auto">
-          <svg
-            viewBox={VIEW_BOX}
-            className="w-full max-w-[1200px] min-w-[320px] block select-none h-auto drop-shadow-sm"
-            aria-label="Casale del Notaio floor plan"
-            role="img"
-          >
-            <FloorStructure />
-            {ROOMS.map((room) => (
-              <RoomShape
-                key={room.id}
-                room={room}
-                isSelected={selectedId === room.id}
-                isHovered={hoveredId === room.id}
-                onClick={() => handleSelect(room)}
-                onHover={() => setHoveredId(room.id)}
-                onLeave={() => setHoveredId(null)}
-              />
-            ))}
-          </svg>
-        </div>
+        <div className="bg-[#EDEEDD] border-y sm:border border-[#3F5D63]/12 rounded-none sm:rounded-[3px] p-0 sm:p-6 -mx-4 sm:mx-0 flex justify-center overflow-hidden">
+  <svg
+    viewBox={VIEW_BOX}
+    className="w-full max-w-[1200px] block select-none h-auto drop-shadow-sm"
+    aria-label="Casale del Notaio floor plan"
+    role="img"
+  >
+    <FloorStructure />
+    {ROOMS.map((room) => (
+      <RoomShape
+        key={room.id}
+        room={room}
+        isSelected={selectedId === room.id}
+        isHovered={hoveredId === room.id}
+        onClick={() => handleSelect(room)}
+        onHover={() => setHoveredId(room.id)}
+        onLeave={() => setHoveredId(null)}
+      />
+    ))}
+  </svg>
+</div>
 
         {/* Legenda inferiore */}
         <div className="flex flex-wrap items-center justify-between gap-3 md:gap-6 mt-4">
