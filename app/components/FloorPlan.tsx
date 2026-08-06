@@ -175,10 +175,10 @@ export function FloorPlan() {
         </div>
 
         {/* Box Planimetria SVG */}
-        <div className="bg-[#EDEEDD] border-y sm:border border-[#3F5D63]/12 rounded-none sm:rounded-[3px] p-0 sm:p-6 -mx-4 sm:mx-0 flex justify-center overflow-hidden">
+<div className="bg-[#EDEEDD] border border-[#3F5D63]/12 rounded-[3px] p-1.5 sm:p-6 flex justify-start md:justify-center overflow-x-scroll scroll-smooth [scrollbar-width:auto] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-track]:bg-[#D5D5B7]/40 [&::-webkit-scrollbar-thumb]:bg-[#355A63] [&::-webkit-scrollbar-thumb]:rounded-full">
   <svg
     viewBox={VIEW_BOX}
-    className="w-full max-w-[1200px] block select-none h-auto drop-shadow-sm"
+    className="w-full max-w-[1200px] min-w-[700px] md:min-w-[800px] block select-none h-auto drop-shadow-sm"
     aria-label="Casale del Notaio floor plan"
     role="img"
   >
