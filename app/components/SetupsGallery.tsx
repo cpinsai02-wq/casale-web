@@ -22,6 +22,8 @@ const GALLERY_ITEMS: GalleryItem[] = [
       { src: "/images/allestimento-tavoli/second.webp", alt: "Centrotavola" },
       { src: "/images/allestimento-tavoli/third.webp", alt: "Buffet" },
       { src: "/images/allestimento-tavoli/fourth.webp", alt: "Decorazione" },
+      { src: "/images/allestimento-tavoli/fifth.webp", alt: "Decorazione" },
+      { src: "/images/allestimento-tavoli/sixth.webp", alt: "Decorazione" },
     ]
   },
   {
